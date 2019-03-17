@@ -62,7 +62,7 @@ public class FileUtil {
         File oldFile = new File(oldPath) ;
         if  (oldFile.exists())  {
 
-            if(oldFile.isDirectory()){ // 如果是文件夹
+            if(oldFile.isDirectory()){
                 File newPathDir = new File(newPath);
                 newPathDir.mkdirs();
                 File[] lists = oldFile.listFiles() ;
@@ -72,7 +72,7 @@ public class FileUtil {
                     }
                 }
             }else {
-                InputStream inStream = new FileInputStream(oldFile);  //读入原文件
+                InputStream inStream = new FileInputStream(oldFile);
                 FileOutputStream fs = new FileOutputStream(newPath);
                 write2Out(inStream ,fs) ;
                 inStream.close();
