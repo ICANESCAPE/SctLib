@@ -1,0 +1,3 @@
+name: SctLib
+version: ${project.version}
+main: org.sct.sctlib.Sctlib
