@@ -191,6 +191,41 @@ public class BasicUtil {
     }
 
     /**
+     * 转换颜色字符
+     *
+     * @param messages 消息
+     * @param symbol 转换符号
+     * @return 转换后的
+     */
+    public static List<String> remove(List<String> messages, char symbol) {
+        List<String> msg = new ArrayList<>();
+        for (String string : messages) {
+            msg.add(remove(string, symbol));
+        }
+        return msg;
+    }
+
+    /**
+     * 转换颜色字符
+     *
+     * @param message 消息
+     * @return 转换后的
+     */
+    public static String remove(String message) {
+        return remove(message, '&');
+    }
+
+    /**
+     * 转换颜色字符
+     *
+     * @param messages 消息
+     * @return 转换后的
+     */
+    public static List<String> remove(List<String> messages) {
+        return remove(messages, '&');
+    }
+
+    /**
      * 判断传入的Object是不是空的
      *
      * @param object 传入参数

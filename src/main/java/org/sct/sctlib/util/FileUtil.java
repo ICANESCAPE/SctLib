@@ -24,6 +24,7 @@ import org.yaml.snakeyaml.DumperOptions;
 public class FileUtil {
     /**
      * 移动 文件或者文件夹
+     *
      * @param oldPath 老路径
      * @param newPath 新路径
      * @throws IOException IO异常
@@ -35,6 +36,7 @@ public class FileUtil {
 
     /**
      * 删除 文件或者文件夹
+     *
      * @param filePath 文件/文件夹路径
      */
     public static void deleteFile(String filePath){
@@ -54,6 +56,7 @@ public class FileUtil {
 
     /**
      * 复制 文件或者文件夹
+     *
      * @param oldPath 老路径
      * @param newPath 新路径
      * @throws IOException IO异常
@@ -82,6 +85,7 @@ public class FileUtil {
 
     /**
      * 重命名文件
+     *
      * @param file 文件
      * @param name 名字
      * @return 那个文件的File对象
@@ -94,7 +98,8 @@ public class FileUtil {
     }
 
     /**
-     * 压缩多个文件。
+     * 压缩多个文件
+     *
      * @param zipFileName 压缩输出文件名
      * @param files 需要压缩的文件
      * @return ZIP文件对象
@@ -124,6 +129,8 @@ public class FileUtil {
     }
 
     /**
+     * 创建zip
+     *
      * @param zipFileName 压缩输出文件名
      * @param inputFile 需要压缩的文件
      * @return ZIP文件对象
@@ -153,15 +160,15 @@ public class FileUtil {
         if (f.isDirectory()) {
             File[] fl = f.listFiles();
             if ( fl == null ||  fl.length == 0) {
-                out.putNextEntry(new ZipEntry(base + "/")); // 创建创建一个空的文件夹
+                out.putNextEntry(new ZipEntry(base + "/"));
             }else{
                 for (int i = 0; i < fl.length; i++) {
-                    zip(out, fl[i], base + "/" + fl[i].getName(), bo); // 递归遍历子文件夹
+                    zip(out, fl[i], base + "/" + fl[i].getName(), bo);
                 }
             }
 
         } else {
-            out.putNextEntry(new ZipEntry(base)); // 创建zip压缩进入 base 文件
+            out.putNextEntry(new ZipEntry(base));
             System.out.println(base);
             BufferedInputStream bi = new BufferedInputStream(new FileInputStream(f));
 

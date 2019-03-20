@@ -1,5 +1,7 @@
 package org.sct.sctlib.util;
 
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -154,6 +156,44 @@ public class ItemUtil {
         List<String> lores = meta.getLore();
         lores.set(index, BasicUtil.remove(target, '&'));
         meta.setLore(lores);
+        item.setItemMeta(meta);
+        return item;
+    }
+
+    /**
+     * 构建一个物品
+     *
+     * @param material 材质
+     * @param durability 子id
+     * @param amount 数量
+     * @param display 名字
+     * @param lore lore
+     * @param flags flags
+     * @param unbreakable 是否不可破坏
+     * @return 构建的物品
+     */
+    public static ItemStack buildItem(String material, short durability, int amount, String display, List<String> lore, ItemFlag[] flags, boolean unbreakable) {
+        int id;
+        ItemStack item;
+        try {
+            id = Integer.parseInt(material);
+            item = new ItemStack(Material.getMaterial(id));
+        } catch (NumberFormatException e) {
+            item = new ItemStack(Material.getMaterial(material));
+        }
+        item.setAmount(amount);
+        item.setDurability(durability);
+        ItemMeta meta = item.getItemMeta();
+        if (display != null) {
+            meta.setDisplayName(BasicUtil.remove(display, '&'));
+        }
+        if (lore != null) {
+            meta.setLore(BasicUtil.remove(lore, '&'));
+        }
+        if (unbreakable) {
+            NbtUtil.setUnbreakable(item, true);
+        }
+        meta.addItemFlags(flags);
         item.setItemMeta(meta);
         return item;
     }
